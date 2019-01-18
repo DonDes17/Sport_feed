@@ -4,11 +4,12 @@ import { Menu } from 'semantic-ui-react';
 
 
 import  Home  from './pages/Home';
-import Details from './pages/Details';
+import Teams from './pages/Teams';
 import Page404 from './pages/Page404';
 
 
 class App extends Component {
+
   state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -17,28 +18,28 @@ class App extends Component {
     const { activeItem } = this.state
     return (
       <div className="App">
-         <div >
-          <Menu className="large inverted pointing secondary" style={{backgroundColor: 'black', height: '30% !important'}}> 
+        <div >
+          <Menu className="huge inverted pointing secondary" style={{backgroundColor: 'black'}}  > 
             <Menu.Item 
               name='home' 
               active={activeItem === 'home'} 
               onClick={this.handleItemClick}
               >
-              <Link to="/">Home</Link>
+              <Link to="/">Accueil</Link>
             </Menu.Item>
             <Menu.Item
-              name='détails'
-              active={activeItem === 'détails'}
+              name='teams'
+              active={activeItem === 'teams'}
               onClick={this.handleItemClick}
             >
-              <Link to="/details">Détails</Link>
+              <Link to="/equipes">Equipes</Link>
             </Menu.Item>
           </Menu>
         </div> 
         <Switch>
-        <Route exact path='/' component={Home} />
-        <Route  path='/details' component={Details} />
-        <Route component={Page404} />
+          <Route exact path='/' component={Home} />
+          <Route  path='/equipes' component={Teams} />
+          <Route component={Page404} />
         </Switch>
       </div>
     );
