@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 
 import { Button, Image } from 'semantic-ui-react'
 import { Animated } from "react-animated-css";
@@ -7,37 +6,42 @@ import { Animated } from "react-animated-css";
 import logo from '../images/logo.png';
 import '../styles/home.css';
 
-const Home = () => (
+export default class Home extends Component {
 
-  <div className='container'>
-    <div className='content'>
-      <Image src={logo} size='large' />
-      <Animated animationIn="pulse" >
-      <Link to="/equipes" >
-        <Button 
-          size='medium'
-          className='animated infinite pulse'
-          style={{
-            backgroundColor: '#dfbb4c',
-            color: 'white', 
-            textAlign: 'center',
-            fontSize: '13px',
-            border: 'none',
-            borderRadius: '5px',
-            minHeight: '30px',
-            minWidth: '100px',
-            padding: '1.5%',
-            marginTop: '-4%'
-          }}
-        >
-        ENTRER
-      </Button>
-      </Link>
-      </Animated>
+  onSubmit = () => {
+    this.props.history.push('/equipes')
+  }
+
+
+  render() {
+
+    return (
+      <div className='container'>
+      <div className='content'>
+        <Image src={logo} size='large' />
+        <Animated animationIn="pulse" >
+          <Button 
+            size='medium'
+            className='animated infinite pulse'
+            style={{
+              backgroundColor: '#dfbb4c',
+              color: 'white', 
+              textAlign: 'center',
+              fontSize: '13px',
+              border: 'none',
+              borderRadius: '5px',
+              minHeight: '30px',
+              minWidth: '100px',
+              padding: '1.5%',
+              marginTop: '-4%'
+            }}
+            onClick={this.onSubmit}
+          >
+          ENTRER
+          </Button>
+        </Animated>
+      </div>
     </div>
-  </div>
- 
-)
-
-
-export default Home;
+    );
+  }
+}
