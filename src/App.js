@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <div className="app">
         <div >
-          <Menu className="huge inverted pointing secondary" style={{backgroundColor: 'black'}}  > 
+          <Menu className="huge inverted pointing secondary" style={{backgroundColor: 'black', }}  > 
             <Menu.Item 
               name='home' 
               active={activeItem === 'home'} 
@@ -36,13 +36,6 @@ class App extends Component {
               onClick={this.handleItemClick}
             >
               <Link to="/equipes">Equipes</Link>
-            </Menu.Item>
-            <Menu.Item
-              name='details'
-              active={activeItem === 'details'}
-              onClick={this.handleItemClick}
-            >
-              <Link to="/details">Détails</Link>
             </Menu.Item>
           </Menu>
         </div> 

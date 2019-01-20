@@ -1,6 +1,6 @@
 .teamDetailsGrid {
-  background-color: grey !important;
-  border:solid  3px #dfbb4c !important;
+   background-color: black !important;
+  /* border:solid  3px black !important;  */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

@@ -50,7 +50,7 @@ goToDetails = (idTeam) => {
   
    return (
     <Grid className='teamsGrid'>
-      <Header as='h1'  className='header'>Liste des équipes de Ligue 1</Header>
+      <Header as='h1' className='header'>Liste des équipes</Header>
       <Grid.Row>
         <Grid.Column  width={8}>
           <Card.Group stackable itemsPerRow={3}>

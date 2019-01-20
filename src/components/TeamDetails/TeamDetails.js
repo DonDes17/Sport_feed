@@ -5,16 +5,7 @@ import './teamDetails.css';
 
 
 export default class TeamDetails extends Component {
-     /**
-         * intFormedYear = dta de création
-         * intStadiumCapacity = capacit stade
-         * strDescriptionEN = description
-         * strStadium = nom du stade
-         * strStadiumThumb = image du stade
-         * strAlternate = nom equipe
-         */
-
-
+    
   render() {
     return(
       <Grid className='teamDetailsGrid' celled>

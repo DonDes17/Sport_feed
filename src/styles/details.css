@@ -7,5 +7,29 @@
  
 }
 
-.gridColumn {
+
+.divInputs {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
+
+.divListInputs {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 1% !important;
+  padding-bottom: 1% !important;
+   padding-left: 0.3% !important;
+   padding-right: 0.3% !important;
+}
+
+
+.playerListContainer {
+  margin-top: 5% !important;
+  margin-bottom: 5% !important;
+  background-color: grey;
+}
+
+
