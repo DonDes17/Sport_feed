@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Image, Segment, Header } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
 
 import './teamDetails.css';
 
@@ -30,4 +31,14 @@ export default class TeamDetails extends Component {
 
     );
   }
+}
+
+
+
+TeamDetails.propTypes = {
+  strAlternate: PropTypes.string.isRequired,
+  strTeam: PropTypes.string.isRequired,
+  strStadium: PropTypes.string.isRequired,
+  intStadiumCapacity : PropTypes.string.isRequired,
+  strDescriptionEN: PropTypes.string.isRequired
 }

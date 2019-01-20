@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Segment , Input, Button, Icon } from 'semantic-ui-react';
+import PropTypes from 'prop-types'
+
 
 import { getTeamDetailsFromApi, getAllTeamPlayersFromApi } from '../API/thSportDb';
 import TeamDetails from '../components/TeamDetails/TeamDetails';
@@ -30,7 +32,7 @@ export default  class Details extends Component  {
 
   getTeamDetails = () => {
     const idTeam = this.props.match.params.idTeam;
-    getTeamDetailsFromApi(idTeam)
+    getTeamDetailsFromApi(idTeam) // fetch team details from api with the id Team
       .then(data => {
        
         this.setState({
@@ -44,7 +46,7 @@ export default  class Details extends Component  {
 
   getAllPlayers = () => {
     const idTeam = this.props.match.params.idTeam;
-    getAllTeamPlayersFromApi(idTeam)
+    getAllTeamPlayersFromApi(idTeam) // fetch team palyers from api with the id Team
     .then(data => {
      
       this.setState({
@@ -57,6 +59,7 @@ export default  class Details extends Component  {
 
   }
 
+  // displayinng team details in a child component
   displayTeamDetails = () => {
     return this.state.teamDetails.map((team)=>  (
       <TeamDetails 
@@ -73,18 +76,15 @@ export default  class Details extends Component  {
     ))
   }
 
-
+  // dispmlaying team players list
   displayTeamPlayers = () => {
-    
+
     return this.state.teamPlayers.map((player)=>  (
       <Segment.Group className='playerListContainer'>
         <div className='divListInputs'>
          <Input style={{width:'30%', paddingRight: '0.3%'}}  type='text' value={ player.strPlayer || 'non communiqué' } placeholder='Nom & Prenom'/>
           <Input style={{width:'30%', paddingRight: '0.3%'}}  type='text' value={ player.strPosition || 'non communiqué' } placeholder='Poste'/> 
           <Input style={{width:'30%'}}  type='text' value={ player.dateSigned || 'non communiqué' } placeholder='Date de signature'/>
-          <Button className='button' color='black' type='submit'>
-              <Icon  color='green' name='check' size='small' />
-          </Button>
           <Button onClick={ () => this.deletePlayer(player.idPlayer) } className='button' color='black' type='submit'>
              <Icon  color='red' name='close' size='small' />
           </Button>
@@ -94,24 +94,24 @@ export default  class Details extends Component  {
   }
 
   onChangeIdentity = (event) => {
-    let newPlayer = Object.assign({}, this.state.newPlayer, { strPlayer: event.target.value})
+    let newPlayer = Object.assign({}, this.state.newPlayer, { strPlayer: event.target.value}) // clone the object newPlayer assign  first name & last name  with the target value
     this.setState({newPlayer})
   }
 
   onChangePosition = (event) => {
-    let newPlayer = Object.assign({}, this.state.newPlayer, { strPosition: event.target.value}) 
+    let newPlayer = Object.assign({}, this.state.newPlayer, { strPosition: event.target.value})  // clone the object newPlayer assign a position with the target value
     this.setState({newPlayer})
   }
 
   onChangeDateSigned = (event) => {
-    let newPlayer = Object.assign({}, this.state.newPlayer, { dateSigned: event.target.value}) 
+    let newPlayer = Object.assign({}, this.state.newPlayer, { dateSigned: event.target.value})   // clone the object newPlayer assign  a contract signed date with the target value
     this.setState({newPlayer})
   }
 
   addPlayer = () => {
       console.log('my new Player: ' , this.state.newPlayer);
      this.setState({
-       teamPlayers: [...this.state.teamPlayers, this.state.newPlayer]
+       teamPlayers: [...this.state.teamPlayers, this.state.newPlayer]  // we create a new state with a copy of its previous values + new values
      })
 
     
@@ -121,7 +121,7 @@ export default  class Details extends Component  {
 
   deletePlayer = (id) => {
       
-    const teamPlayers = this.state.teamPlayers.filter(i => i.idPlayer !== id);
+    const teamPlayers = this.state.teamPlayers.filter(i => i.idPlayer !== id);  // filter the state to return  array containing objects whose id is different from the one passed 
     this.setState({teamPlayers: [...teamPlayers]})
   }
 
@@ -157,4 +157,17 @@ export default  class Details extends Component  {
     </Grid>
     );
   }
+}
+
+
+
+Details.propTypes = {
+  displayTeamDetails : PropTypes.func.isRequired,
+  displayTeamPlayers: PropTypes.func.isRequired,
+  onChangeIdentity: PropTypes.func.isRequired,
+  onChangePosition: PropTypes.func.isRequired,
+  onChangeDateSigned: PropTypes.func.isRequired,
+  addPlayer: PropTypes.func.isRequired,
+  deletePlayer: PropTypes.func.isRequired,
+  
 }

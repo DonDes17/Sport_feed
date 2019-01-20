@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import '../styles/page404.css'
 
 const Page404 = () => (
@@ -8,7 +9,7 @@ const Page404 = () => (
 				<h1>Oops!</h1>
 				<h2>404 - La page n'a pas été trouvée</h2>
 			</div>
-			<a href="#">revenir à Home</a>
+			<Link to='/'>revenir à l'accueil</Link>
 		</div>
 	</div>
 )

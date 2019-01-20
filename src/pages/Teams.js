@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Grid , Card, Header} from 'semantic-ui-react';
+import PropTypes from 'prop-types'
+
 
 import { getAllteamsFromApi } from '../API/thSportDb';
 import TeamItem from '../components/TeamItem/TeamItem';
@@ -17,10 +19,9 @@ export default class Teams extends Component {
  }
 
  componentDidMount() {
-  getAllteamsFromApi()
+  getAllteamsFromApi() // fetch all teams of league
     .then(data => {
-      console.log('teams gen: ', data.teams);
-      
+     
       this.setState({
         teamsList: data.teams
       });
@@ -31,13 +32,13 @@ export default class Teams extends Component {
 }
 
 goToDetails = (idTeam) => {
-  this.props.history.push(`/details/${idTeam}`);
+  this.props.history.push(`/details/${idTeam}`); //passes the id of a team with url parameter
 } 
 
  
  render() {
   
-   const teamsComponents = this.state.teamsList.map((team)=>  (
+   const teamsComponents = this.state.teamsList.map((team)=>  ( //Display of team information
      <TeamItem 
       key={team.idTeam}
       idTeam={team.idTeam}
@@ -61,4 +62,10 @@ goToDetails = (idTeam) => {
     </Grid>
     );
   }
+}
+
+
+Teams.propTypes = {
+  getAllteamsFromApi : PropTypes.func.isRequired,
+  goToDetails: PropTypes.func.isRequired,
 }
