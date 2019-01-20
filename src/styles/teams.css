@@ -5,3 +5,12 @@
   padding-top: 5% !important;
 }
 
+.header {
+  color: white !important;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%!important;
+}
+

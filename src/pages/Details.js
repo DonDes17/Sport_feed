@@ -1,19 +1,98 @@
 import React, { Component } from 'react';
 import { Grid, Segment , Table, Button, Icon } from 'semantic-ui-react';
 
+import { getTeamDetailsFromApi, getAllTeamPlayersFromApi } from '../API/thSportDb';
+import TeamDetails from '../components/TeamDetails/TeamDetails';
 import '../styles/details.css';
 
 export default  class Details extends Component  { 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      teamDetails: [],
+      teamPlayers: []
+    }
+  }
  
- 
+  componentDidMount() {
+    this.getTeamDetails()
+    this.getAllPlayers()
+
+    
+  }
+
+  getTeamDetails = () => {
+    const idTeam = this.props.match.params.idTeam;
+    getTeamDetailsFromApi(idTeam)
+      .then(data => {
+        console.log('details team: ', data.teams);
+       
+        /**
+         * intFormedYear = dta de création
+         * intStadiumCapacity = capacit stade
+         * strDescriptionEN = description
+         * strStadium = nom du stade
+         * strStadiumThumb = image du stade
+         * strAlternate = nom equipe
+         */
+        this.setState({
+          teamDetails: data.teams
+        });
+      })
+      .catch(err => {
+        console.log('oops: ' + err);
+      });
+  }
+
+  getAllPlayers = () => {
+    const idTeam = this.props.match.params.idTeam;
+    getAllTeamPlayersFromApi(idTeam)
+    .then(data => {
+      console.log('players team: ', data.player);
+      
+       /**
+       * strPosition = psote
+       * dateSigned = date de signature
+       * strPlayer = nom du joueur
+       * strNationality = nationnalité
+       */
+
+      this.setState({
+        teamsList: data.teams
+      });
+    })
+    .catch(err => {
+      console.log('oops: ' + err);
+    });
+
+  }
+
+  displayTeamDetails = () => {
+    return this.state.teamDetails.map((team)=>  (
+      <TeamDetails 
+       key={team.idTeam}
+       intFormedYear={team.intFormedYear}
+       intStadiumCapacity={team.intStadiumCapacity}
+       strDescriptionEN={team.strDescriptionEN}
+       strTeamBadge={team.strTeamBadge}
+       strTeam={team.strTeam}
+       strAlternate={team.strAlternate}
+       strStadium={team.strStadium}
+       strManager={team.strManager}
+     /> 
+    ))
+  }
 
   render() {
-    console.log('mon id: ', this.props.match.params.idTeam);
+    console.log('mon id: ', );
 
     return (
       <Grid className='detailsTable'>
+     
       <Grid.Row>
-        <Grid.Column width={13}>
+        <Grid.Column  width={10}>
+        {this.displayTeamDetails()}
           <Table  celled selectable inverted >
             <Table.Header>
               <Table.Row>

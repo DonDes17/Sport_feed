@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Grid , Card} from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Grid , Card, Header} from 'semantic-ui-react';
+
 import { getAllteamsFromApi } from '../API/thSportDb';
-import Details from './Details';
 import TeamItem from '../components/TeamItem/TeamItem';
+
 import '../styles/teams.css';
+
 
 export default class Teams extends Component {
  constructor(props){
@@ -18,19 +19,14 @@ export default class Teams extends Component {
  componentDidMount() {
   getAllteamsFromApi()
     .then(data => {
-   // console.log('mes datas:' , data)
-    /* key= idTeam 
-       nom= strTeam
-       stade= strStadium
-       badge= strTeamBadge
-    */
+      console.log('teams gen: ', data.teams);
+      
       this.setState({
         teamsList: data.teams
       });
     })
     .catch(err => {
       console.log('oops: ' + err);
-      
     })
 }
 
@@ -40,9 +36,7 @@ goToDetails = (idTeam) => {
 
  
  render() {
-  //console.log('mon id: ', this.state.teamsList);
   
-
    const teamsComponents = this.state.teamsList.map((team)=>  (
      <TeamItem 
       key={team.idTeam}
@@ -53,15 +47,15 @@ goToDetails = (idTeam) => {
       goToDetails={() => this.goToDetails(team.idTeam)}
     /> 
    ))
- 
-   
+  
    return (
     <Grid className='teamsGrid'>
+      <Header as='h1'  className='header'>Liste des équipes de Ligue 1</Header>
       <Grid.Row>
-        <Grid.Column  width={11}>
-        <Card.Group stackable itemsPerRow={3}>
-          {teamsComponents}
-          </Card.Group> 
+        <Grid.Column  width={8}>
+          <Card.Group stackable itemsPerRow={3}>
+            {teamsComponents}
+            </Card.Group> 
         </Grid.Column>
       </Grid.Row>
     </Grid>
