@@ -1,9 +1,7 @@
-.teamsTable {
+.teamsGrid {
   background-color: black;
-  height: 100vh;
   display: flex;
   justify-content: center;
   padding-top: 5% !important;
-  /* align-items: center !important; */
- 
 }
+

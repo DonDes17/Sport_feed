@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { Button, Image } from 'semantic-ui-react'
 import { Animated } from "react-animated-css";
 
@@ -11,7 +10,6 @@ export default class Home extends Component {
   onSubmit = () => {
     this.props.history.push('/equipes')
   }
-
 
   render() {
 

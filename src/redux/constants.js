@@ -1,0 +1,8 @@
+export const GET_TEAM_DETAILS = 'GET_TEAM_DETAILS';
+export const GET_ALL_TEAM_PLAYERS = 'GET_ALL_TEAM_PLAYERS'
+export const ADD_PLAYER = 'ADD_PLAYER';
+export const EDIT_PLAYER = 'EDIT_PLAYER';
+export const REMOVE_PLAYER = 'REMOVE_PLAYER';
+
+
+

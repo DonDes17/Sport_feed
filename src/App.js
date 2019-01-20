@@ -8,6 +8,7 @@ import Details from './pages/Details';
 import Page404 from './pages/Page404';
 
 
+
 class App extends Component {
 
   state = { activeItem: 'home' }
@@ -48,7 +49,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route  path='/equipes' component={Teams} />
-          <Route  path='/details' component={Details} />
+          <Route  path='/details/:idTeam' component={Details} />
           <Route component={Page404} />
         </Switch>
       </div>
